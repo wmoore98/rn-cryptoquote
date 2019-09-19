@@ -1,0 +1,31 @@
+.Character {
+  display: inline-block;
+  width: 1.25rem;
+  font-size: 1.25rem;
+  margin-bottom: 1.25rem;
+  border-radius: 5px;
+}
+
+.Character--selected {
+  color: #282c34;
+  background-color: white;
+  animation: selectedAnim 300ms ease-in-out;
+}
+
+@keyframes selectedAnim {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.25);
+  }
+}
+
+.Character:hover {
+  color: #282c34;
+  background-color: white;
+  transform: scale(1.25);
+  transition: all 300ms ease-in-out;
+  box-shadow: 3px 3px rgba(255, 255, 255, 0.25);
+}
