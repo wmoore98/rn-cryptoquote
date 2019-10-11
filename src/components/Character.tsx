@@ -18,11 +18,11 @@ export default function Character(props: CharacterProps) {
 
   return (
     <div
-      className={`Character${isSelected ? ' Character--selected' : ''}`}
+      className={`Character ${isSelected ? 'Character--selected' : ''}`}
       onClick={handleClick}
     >
-      <div>{topChar}</div>
-      <div>{bottomChar}</div>
+      <div className='Character-top'>{topChar}</div>
+      <div className='Character-bottom'>{bottomChar}</div>
     </div>
   );
 }

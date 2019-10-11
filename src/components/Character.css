@@ -1,9 +1,18 @@
 .Character {
   display: inline-block;
-  width: 1.25rem;
-  font-size: 1.25rem;
-  margin-bottom: 1.25rem;
+  width: var(--Character-font-size);
+  font-size: var(--Character-font-size);
+  margin-bottom: var(--Character-font-size);
   border-radius: 5px;
+}
+
+.Character-top {
+  color: #ddeaf0;
+}
+
+.Character-bottom {
+  color: #589cb4;
+  font-weight: 500;
 }
 
 .Character--selected {

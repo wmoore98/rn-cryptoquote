@@ -2,20 +2,65 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: calc(100vh - 2rem);
+  min-height: 100vh;
   width: 80%;
-  margin: 2rem auto;
+  max-width: 80rem;
+  padding-top: var(--Navbar-height);
+  margin: 0 auto;
 }
 
 .CryptoQuote {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin: 3rem 0;
+  font-size: var(--Character-font-size);
 }
 
 .CryptoQuote-category,
 .CryptoQuote-quote,
-.CryptoQuote-author {
+.CryptoQuote-author,
+.CryptoQuote-guessMap,
+.CryptoQuote-input {
   margin-bottom: 2rem;
+}
+
+.CryptoQuote-guessMap {
+  display: inline-block;
+}
+
+.CryptoQuote-input span {
+  display: inline-block;
+  width: 3rem;
+  margin: 0 0.5rem;
+  border-bottom: 3px solid #ffffff;
+}
+
+.CryptoQuote-input span.active {
+  border-bottom: 3px solid #9778e0;
+}
+
+.undoBtn {
+  display: inline-block;
+  width: 5rem;
+}
+
+.btn {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 0.5rem; /* Some padding */
+  font-size: 1rem; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  border-radius: 50%;
+}
+
+.btn:disabled {
+  background-color: #dddddd;
+  cursor: not-allowed;
+}
+
+/* Darker background on mouse-over */
+.btn:hover:not(:disabled) {
+  background-color: RoyalBlue;
 }

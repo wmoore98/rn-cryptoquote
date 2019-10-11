@@ -1,4 +1,60 @@
 .Navbar {
-  height: 2rem;
-  background-color: #282c34;
+  position: fixed;
+  top: 0;
+  height: var(--Navbar-height);
+  width: var(--App-width);
+  max-width: var(--App-max-width);
+  background-color: #3f3f3f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.Navbar-logo {
+  color: #589cb4;
+  font-weight: bold;
+}
+
+.Navbar nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.Navbar-link {
+  position: relative;
+  padding: 1rem 0.5rem 0.25rem;
+  margin: 0 0.5rem;
+  font-size: 0.75rem;
+  color: rgb(224, 224, 224);
+  text-decoration: none;
+  transition: all 0.3s ease-in;
+}
+
+.Navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  border-top: 1px solid #ffffff;
+  transform: scaleX(0);
+}
+
+.Navbar-link:hover::after {
+  animation: navLinkAnim 0.3s ease-in forwards;
+}
+
+@keyframes navLinkAnim {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
 }

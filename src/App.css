@@ -1,7 +1,23 @@
+:root {
+  --Navbar-height: 3rem;
+  --App-width: calc(80vw);
+  --App-max-width: 80rem;
+  --Character-font-size: 1.25rem;
+}
+
 .App {
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
+  width: var(--App-width);
+  max-width: var(--App-max-width);
   color: white;
-  font-size: calc(10px + 2vmin);
+  margin: 0 auto;
+}
+
+@media (max-width: 64rem) {
+  :root {
+    --App-width: 100vw;
+    --Character-font-size: 1rem;
+  }
 }

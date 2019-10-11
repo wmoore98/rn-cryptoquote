@@ -8,5 +8,28 @@ import './Navbar.css';
 // }
 
 export default function Navbar() {
-  return <div className='Navbar'></div>;
+  return (
+    <header className='Navbar'>
+      <div className='Navbar-logo'>EncryptedQuote</div>
+      <nav>
+        <ul>
+          <li>
+            <a className='Navbar-link' href='#'>
+              Home
+            </a>
+          </li>
+          <li>
+            <a className='Navbar-link' href='#'>
+              About
+            </a>
+          </li>
+          <li>
+            <a className='Navbar-link' href='#'>
+              Contact
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
 }

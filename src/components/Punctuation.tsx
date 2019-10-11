@@ -9,8 +9,8 @@ interface PunctuationProps {
 export default function Punctuation(props: PunctuationProps) {
   return (
     <div className='Punctuation'>
-      <div>{props.char}</div>
-      <div>{props.char}</div>
+      <div className='Punctuation-top'>{props.char}</div>
+      <div className='Punctuation-bottom'>{props.char}</div>
     </div>
   );
 }
