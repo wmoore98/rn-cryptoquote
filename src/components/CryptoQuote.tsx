@@ -104,13 +104,13 @@ export default function CryptoQuote(props: CryptoQuoteProps): JSX.Element {
       const randomCat = Math.floor(Math.random() * categories.length);
       const category = categories[randomCat];
 
-      // const response: AxiosResponse = await axios.get(
-      //   'https://wmoore98-quote.herokuapp.com/api/quotes'
-      // );
-
       const response: AxiosResponse = await axios.get(
-        'http://localhost:3001/api/quotes'
+        'https://wmoore98-quote.herokuapp.com/api/quotes'
       );
+
+      // const response: AxiosResponse = await axios.get(
+      //   'http://localhost:3001/api/quotes'
+      // );
 
       // const response = {
       //   data: [
