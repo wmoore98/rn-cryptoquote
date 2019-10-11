@@ -103,26 +103,12 @@ export default function CryptoQuote(props: CryptoQuoteProps): JSX.Element {
       const categories = Object.values(quoteCategory);
       const randomCat = Math.floor(Math.random() * categories.length);
       const category = categories[randomCat];
+      const QUOTE_API_URL =
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:3001/api/quotes'
+          : 'https://wmoore98-quote.herokuapp.com/api/quotes';
 
-      const response: AxiosResponse = await axios.get(
-        'https://wmoore98-quote.herokuapp.com/api/quotes'
-      );
-
-      // const response: AxiosResponse = await axios.get(
-      //   'http://localhost:3001/api/quotes'
-      // );
-
-      // const response = {
-      //   data: [
-      //     {
-      //       author: 'Bjarne Stroustrup',
-      //       category: 'Famous',
-      //       quote:
-      //         'C makes it easy to shoot yourself in the foot; C++ makes it harder, but when you do, it blows away your whole leg.'
-      //     }
-      //   ]
-      // };
-
+      const response: AxiosResponse = await axios.get(QUOTE_API_URL);
       console.log(category, response.data);
 
       const data = response.data[0] as QuoteData;
