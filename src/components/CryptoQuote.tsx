@@ -1,4 +1,4 @@
-import React, { useState, useEffect, KeyboardEvent, ChangeEvent } from 'react';
+import React, { useEffect, KeyboardEvent, ChangeEvent } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import Character from './Character';
 import Space from './Space';
@@ -8,8 +8,35 @@ import Punctuation from './Punctuation';
 import './CryptoQuote.css';
 
 interface CryptoQuoteProps {
-  count: number;
+  game: gameType;
 }
+
+export type gameType = {
+  gameState: {
+    data: AugmentedData;
+    selectedPlainChar: string;
+    selectedEncryptedChar: string;
+  };
+  setGameState: React.Dispatch<
+    React.SetStateAction<{
+      data: AugmentedData;
+      selectedPlainChar: string;
+      selectedEncryptedChar: string;
+    }>
+  >;
+  isLoaded: boolean;
+  setIsLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  isWinner: boolean;
+  setIsWinner: React.Dispatch<React.SetStateAction<boolean>>;
+  undoGameState: { guessMap: StringMap; reverseGuessMap: StringMap }[];
+  setUndoGameState: React.Dispatch<
+    React.SetStateAction<{ guessMap: StringMap; reverseGuessMap: StringMap }[]>
+  >;
+  redoGameState: { guessMap: StringMap; reverseGuessMap: StringMap }[];
+  setRedoGameState: React.Dispatch<
+    React.SetStateAction<{ guessMap: StringMap; reverseGuessMap: StringMap }[]>
+  >;
+};
 
 enum quoteCategory {
   Movies = 'movies',
@@ -22,18 +49,22 @@ type QuoteData = {
   quote: string;
 };
 
-type AugmentedData = {
+export type AugmentedData = {
   author: string;
   category: quoteCategory;
   quote: string;
-  encryptMap: { [key: string]: string };
-  guessMap: { [key: string]: string };
-  reverseGuessMap: { [key: string]: string };
+  encryptMap: StringMap;
+  guessMap: StringMap;
+  reverseGuessMap: StringMap;
 };
 
 type Move = {
   plainChar: string;
   encryptedChar: string;
+};
+
+export type StringMap = {
+  [key: string]: string;
 };
 
 const INITIAL_GAME_STATE = {
@@ -45,27 +76,24 @@ const INITIAL_GAME_STATE = {
 const alphaArray = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
 
 export default function CryptoQuote(props: CryptoQuoteProps): JSX.Element {
-  const [gameState, setGameState] = useState(INITIAL_GAME_STATE);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isWinner, setIsWinner] = useState(false);
-  const [undoGameState, setUndoGameState] = useState<
-    {
-      guessMap: { [key: string]: string };
-      reverseGuessMap: { [key: string]: string };
-    }[]
-  >([]);
-  const [redoGameState, setRedoGameState] = useState<
-    {
-      guessMap: { [key: string]: string };
-      reverseGuessMap: { [key: string]: string };
-    }[]
-  >([]);
+  const {
+    gameState,
+    setGameState,
+    isLoaded,
+    setIsLoaded,
+    isWinner,
+    setIsWinner,
+    undoGameState,
+    setUndoGameState,
+    redoGameState,
+    setRedoGameState
+  } = props.game;
 
   const augmentData = (data: QuoteData): AugmentedData => {
     const generateCryptoMap = () => {
-      const encryptMap = {} as { [key: string]: string };
-      const guessMap = {} as { [key: string]: string };
-      const reverseGuessMap = {} as { [key: string]: string };
+      const encryptMap = {} as StringMap;
+      const guessMap = {} as StringMap;
+      const reverseGuessMap = {} as StringMap;
       const keys = [...alphaArray];
       const values = [...alphaArray];
       keys.forEach(key => {
@@ -114,10 +142,22 @@ export default function CryptoQuote(props: CryptoQuoteProps): JSX.Element {
       const data = response.data[0] as QuoteData;
       const augmentedData: AugmentedData = augmentData(data);
       setGameState({ ...INITIAL_GAME_STATE, data: augmentedData });
-      setIsLoading(false);
+      setIsWinner(false);
+      setUndoGameState([]);
+      setRedoGameState([]);
+      setIsLoaded(true);
     };
-    getRandomQuote();
-  }, []);
+    if (!isLoaded) {
+      getRandomQuote();
+    }
+  }, [
+    isLoaded,
+    setGameState,
+    setIsWinner,
+    setUndoGameState,
+    setRedoGameState,
+    setIsLoaded
+  ]);
 
   useEffect((): void => {
     const { quote, author, guessMap, encryptMap } = gameState.data;
@@ -128,7 +168,7 @@ export default function CryptoQuote(props: CryptoQuoteProps): JSX.Element {
     });
 
     if (win) setIsWinner(win);
-  }, [gameState.data, isWinner]);
+  }, [gameState.data, isWinner, setIsWinner]);
 
   const updateGuessMap = ({ plainChar, encryptedChar }: Move): void => {
     const generateReverseMap = (map: {
@@ -391,9 +431,7 @@ export default function CryptoQuote(props: CryptoQuoteProps): JSX.Element {
     setFocus();
   }
 
-  return isLoading ? (
-    <main>Loading...</main>
-  ) : (
+  return isLoaded ? (
     <main className='container' onClick={setFocus}>
       <div className='CryptoQuote'>
         {renderCategory()}
@@ -405,5 +443,7 @@ export default function CryptoQuote(props: CryptoQuoteProps): JSX.Element {
         {isWinner ? <div>You solved it!!!</div> : null}
       </div>
     </main>
+  ) : (
+    <main>Loading...</main>
   );
 }

@@ -1,33 +1,32 @@
 import React from 'react';
 
 import './Navbar.css';
+import { NavLink } from 'react-router-dom';
 
-// interface NavbarProps {
-//   plainChar: string;
-//   encryptedChar: string;
-// }
+interface NavbarProps {
+  paths: { to: string; text: string }[];
+  user: string;
+}
 
-export default function Navbar() {
+export default function Navbar(props: NavbarProps): JSX.Element {
   return (
     <header className='Navbar'>
       <div className='Navbar-logo'>EncryptedQuote</div>
+      {props.user ? <div>{props.user}</div> : null}
       <nav>
         <ul>
-          <li>
-            <a className='Navbar-link' href='#'>
-              Home
-            </a>
-          </li>
-          <li>
-            <a className='Navbar-link' href='#'>
-              About
-            </a>
-          </li>
-          <li>
-            <a className='Navbar-link' href='#'>
-              Contact
-            </a>
-          </li>
+          {props.paths.map(({ to, text }) => (
+            <li key={to}>
+              <NavLink
+                exact
+                className='Navbar-link'
+                activeClassName='Navbar-active'
+                to={to}
+              >
+                {text}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

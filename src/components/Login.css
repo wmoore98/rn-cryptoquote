@@ -1,0 +1,23 @@
+.Login form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Login label {
+  text-align: left;
+}
+.Login input {
+  margin: 0;
+  padding: 1rem;
+  border: none;
+  background: #fff;
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.Login button {
+  border: none;
+  background: #fff;
+  padding: 1rem;
+  font-size: 1.25rem;
+}
