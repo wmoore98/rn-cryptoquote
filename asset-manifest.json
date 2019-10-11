@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/rn-cryptoquote/static/css/main.2c3f4ecc.chunk.css",
-    "main.js": "/rn-cryptoquote/static/js/main.5710609a.chunk.js",
-    "main.js.map": "/rn-cryptoquote/static/js/main.5710609a.chunk.js.map",
+    "main.css": "/rn-cryptoquote/static/css/main.437e7a5f.chunk.css",
+    "main.js": "/rn-cryptoquote/static/js/main.56cc443d.chunk.js",
+    "main.js.map": "/rn-cryptoquote/static/js/main.56cc443d.chunk.js.map",
     "runtime~main.js": "/rn-cryptoquote/static/js/runtime~main.5e1ed734.js",
     "runtime~main.js.map": "/rn-cryptoquote/static/js/runtime~main.5e1ed734.js.map",
-    "static/js/2.ddb5edee.chunk.js": "/rn-cryptoquote/static/js/2.ddb5edee.chunk.js",
-    "static/js/2.ddb5edee.chunk.js.map": "/rn-cryptoquote/static/js/2.ddb5edee.chunk.js.map",
+    "static/js/2.3dda3328.chunk.js": "/rn-cryptoquote/static/js/2.3dda3328.chunk.js",
+    "static/js/2.3dda3328.chunk.js.map": "/rn-cryptoquote/static/js/2.3dda3328.chunk.js.map",
     "index.html": "/rn-cryptoquote/index.html",
-    "precache-manifest.c4f94d132e0d886a7fc09354bb030d4e.js": "/rn-cryptoquote/precache-manifest.c4f94d132e0d886a7fc09354bb030d4e.js",
+    "precache-manifest.b2577ef652169401c2715846987c589a.js": "/rn-cryptoquote/precache-manifest.b2577ef652169401c2715846987c589a.js",
     "service-worker.js": "/rn-cryptoquote/service-worker.js",
-    "static/css/main.2c3f4ecc.chunk.css.map": "/rn-cryptoquote/static/css/main.2c3f4ecc.chunk.css.map"
+    "static/css/main.437e7a5f.chunk.css.map": "/rn-cryptoquote/static/css/main.437e7a5f.chunk.css.map"
   }
 }
